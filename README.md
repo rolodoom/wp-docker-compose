@@ -39,8 +39,8 @@ Before you begin, ensure that you have the following installed on your machine:
 Clone or download this repository to your local machine.
 
 ```bash
-git clone YOUR_REPOSITORY_URL
-cd YOUR_REPOSITORY_FOLDER
+git clone --depth 1 https://github.com/rolodoom/wp-docker-compose.git
+rm -rf wp-docker-compose/.git
 ```
 
 ### 2. Modify the `.env` file
