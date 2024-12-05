@@ -1,2 +1,48 @@
-wp_app/
-wp_db/
+# .gitignore for Docker + WordPress project
+
+# Node modules (if you're using Node.js for build tasks)
+node_modules/
+
+# Docker files
+docker-compose.override.yml
+docker-compose.override.*.yml
+Dockerfile
+docker-compose.yml.bak
+
+# Ignore the entire wp-content directory (including uploads, themes, plugins, cache)
+wp-content/
+
+# MySQL database files
+backup/
+
+# Mac system files
+.DS_Store
+
+# Logs
+*.log
+
+# Environment variable files
+.env
+
+# Temporary files
+*.swp
+*.swo
+*~
+
+# IDE and editor settings
+.vscode/
+.idea/
+
+# Composer files (if using Composer)
+composer.lock
+
+# Backup files
+*.bak
+*.sql
+*.sql.gz
+
+# Nginx/Apache cache files
+nginx/cache/
+
+# Other build artifacts
+/build/
