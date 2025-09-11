@@ -17,6 +17,7 @@ Simple Wordpress development with Docker and Docker Compose using **WordPress**,
   - [Removing containers](#removing-containers)
   - [Developing a Theme](#developing-a-theme)
   - [Developing a Plugin](#developing-a-plugin)
+- [MariaDB](#mariadb)
 - [phpMyAdmin](#phpmyadmin)
 - [Backup Script](#using-the-backup-script)
 - [Troubleshooting](#troubleshooting)
@@ -152,6 +153,19 @@ Configure the volume to load the plugin in the container in the `docker-compose.
 volumes:
   - ./plugin-name/trunk/:/var/www/html/wp-content/plugins/plugin-name
 ```
+
+## MariaDB
+
+For local development, you can use MariaDB 10.11 instead of MySQL 8 to ensure compatibility with your cloud server.
+
+You only need to change the database container image in your `docker-compose.yml`:
+
+```yaml
+db:
+  image: mariadb:10.11
+```
+
+No other changes are required; WordPress and phpMyAdmin will continue to work normally.
 
 ## phpMyAdmin
 
