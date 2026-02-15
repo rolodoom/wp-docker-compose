@@ -9,8 +9,9 @@ docker-compose.override.*.yml
 Dockerfile
 docker-compose.yml.bak
 
-# Ignore the entire wp-content directory (including uploads, themes, plugins, cache)
-wp-content/
+# Ignore the entire dev content
+wp_app/
+wp_db/
 
 # MySQL database files
 backup/
@@ -23,6 +24,7 @@ backup/
 
 # Environment variable files
 .env
+.env.local
 
 # Temporary files
 *.swp
