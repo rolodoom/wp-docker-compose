@@ -78,8 +78,9 @@ PHPMYADMIN_PORT=8080
 If you need to increase the maximum allowed file upload size for WordPress, you can use the provided `php.ini` file. This is particularly useful if you plan to upload larger media files, themes, or plugins.
 
 ```ini
-upload_max_filesize = 16M
-post_max_size = 16M
+upload_max_filesize = 128M
+post_max_size = 128M
+memory_limit = 512M
 ```
 
 This will increase the file upload limit to 16MB. You can adjust the values as needed.
@@ -89,7 +90,7 @@ This will increase the file upload limit to 16MB. You can adjust the values as n
 Run the following command to start the containers using Docker Compose:
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 This will start the following containers:
@@ -109,7 +110,7 @@ The containers are now built and running. You should be able to access the WordP
 You can start the containers with the `up` command in daemon mode (by adding `-d` as an argument):
 
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
 ### Stopping containers
@@ -117,7 +118,7 @@ docker-compose up -d
 You can stop the containers with the `stop` command in daemon mode:
 
 ```
-docker-compose stop
+docker compose stop
 ```
 
 ### Removing containers
@@ -125,7 +126,7 @@ docker-compose stop
 To stop and remove all the containers use the `down` command:
 
 ```
-docker-compose down
+docker compose down
 ```
 
 ### Persistant removing containers
@@ -133,7 +134,7 @@ docker-compose down
 Use `-v` if you need to remove the database volume which is used to persist the database:
 
 ```
-docker-compose down -v
+docker compose down -v
 ```
 
 ### Developing a Theme
