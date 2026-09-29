@@ -18,7 +18,6 @@ Simple Wordpress development with Docker and Docker Compose using **WordPress**,
   - [Developing a Theme](#developing-a-theme)
   - [Developing a Plugin](#developing-a-plugin)
   - [Localization / Internationalization](#localization--internationalization)
-
 - [MariaDB](#mariadb)
 - [phpMyAdmin](#phpmyadmin)
 - [Backup Script](#using-the-backup-script)
