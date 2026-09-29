@@ -17,6 +17,8 @@ Simple Wordpress development with Docker and Docker Compose using **WordPress**,
   - [Removing containers](#removing-containers)
   - [Developing a Theme](#developing-a-theme)
   - [Developing a Plugin](#developing-a-plugin)
+  - [Localization / Internationalization](#localization--internationalization)
+
 - [MariaDB](#mariadb)
 - [phpMyAdmin](#phpmyadmin)
 - [Backup Script](#using-the-backup-script)
@@ -154,6 +156,73 @@ Configure the volume to load the plugin in the container in the `docker-compose.
 volumes:
   - ./plugin-name/trunk/:/var/www/html/wp-content/plugins/plugin-name
 ```
+
+### Localization / Internationalization
+
+WordPress themes and plugins can be localized using the WordPress internationalization (i18n) functions.
+
+Use a unique **Text Domain** and wrap all user-facing strings using functions such as:
+
+```php
+__( 'Hello world', 'text-domain' );
+_e( 'Hello world', 'text-domain' );
+esc_html__( 'Hello world', 'text-domain' );
+esc_html_e( 'Hello world', 'text-domain' );
+```
+
+#### Themes
+
+Define the `Text Domain` in the theme header:
+
+```text
+Text Domain: your-theme
+```
+
+Create the `languages` directory inside the theme:
+
+```bash
+mkdir -p themes/<theme-name>/languages
+```
+
+Generate the translation template (`.pot`) using WP-CLI:
+
+```bash
+docker run --rm \
+  --volumes-from <wordpress-container> \
+  wordpress:cli \
+  i18n make-pot \
+  /var/www/html/wp-content/themes/<theme-name> \
+  /var/www/html/wp-content/themes/<theme-name>/languages/<text-domain>.pot
+```
+
+#### Plugins
+
+Define the `Text Domain` in the plugin header:
+
+```text
+Text Domain: your-plugin
+```
+
+Create the `languages` directory inside the plugin:
+
+```bash
+mkdir -p plugins/<plugin-name>/languages
+```
+
+Generate the translation template (`.pot`) using WP-CLI:
+
+```bash
+docker run --rm \
+  --volumes-from <wordpress-container> \
+  wordpress:cli \
+  i18n make-pot \
+  /var/www/html/wp-content/plugins/<plugin-name> \
+  /var/www/html/wp-content/plugins/<plugin-name>/languages/<text-domain>.pot
+```
+
+The `.pot` filename should match the **Text Domain**.
+
+The generated `.pot` file can be opened with [Poedit](https://poedit.net/) to create the corresponding translation files.
 
 ## MariaDB
 
